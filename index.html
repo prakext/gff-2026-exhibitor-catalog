@@ -40,7 +40,7 @@ main{max-width:1160px;margin:26px auto 60px;padding:0 24px}
 .card:hover{box-shadow:0 10px 28px -10px rgba(15,28,51,.16);transform:translateY(-2px)}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .card-top{display:flex;align-items:flex-start;gap:12px}
-.booth{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:5px 9px;white-space:nowrap;max-width:180px;overflow:hidden;text-overflow:ellipsis}
+.booth{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:4px 8px;white-space:normal;overflow-wrap:anywhere;line-height:1.4}
 .name{font-size:17px;font-weight:700;letter-spacing:-.01em;flex:1;line-height:1.3}
 .web{font-size:13px;color:var(--accent);text-decoration:none;font-weight:500;word-break:break-all}
 .web:hover{text-decoration:underline}
@@ -121,7 +121,7 @@ function card(d, terms){
   let booth, loc = '';
   if(parts.length>1){ booth = '#'+parts[0].trim(); loc = parts[1].replace('App:','').trim(); }
   else if(/^\d/.test(d.booth)){ booth = '#'+d.booth; }
-  else { booth = d.booth; }
+  else { booth = d.booth.replace(/^App:\s*/,''); }
   let h = '<article class="card">';
   h += '<div class="card-top"><span class="booth" title="'+esc(d.booth)+'">'+esc(booth)+(loc?' &middot; '+esc(loc):'')+'</span>';
   h += '<span class="name">'+hi(d.name,terms)+'</span>';
